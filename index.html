@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
   <link rel="stylesheet" href="lib/chosen/chosen.css">
 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
   <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
   <script src="lib/chosen/chosen.jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
@@ -14,7 +15,7 @@
 <div class="container" ng-controller="RecipientsController">
   <h1>Chosen</h1>
   <select data-placeholder="Choose a Recipient" multiple class="span4 chzn-select" chosen
-      ng-model="recipients" ng-options="recipient.name for recipient in recipientsList">
+      ng-model="recipients" list="recipientsList" ng-options="recipient.name for recipient in recipientsList">
   </select>
 
   <p ng-repeat="recipient in recipients"><strong>{{recipient.name}}</strong></p>

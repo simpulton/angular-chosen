@@ -2,15 +2,10 @@ var module = angular.module('myApp', []);
 
 module.directive('chosen',function(){
     var linker = function(scope,element,attrs) {
-        var model = attrs['ngModel'];
+        var list = attrs['list'];
 
-        scope.$watch('recipientsList',function(){
+        scope.$watch(list, function(){
             element.trigger('liszt:updated');
-        });
-
-        /* Added this in so that you could preselect items */
-        scope.$watch(model, function () {
-            element.trigger("liszt:updated");
         });
 
         element.chosen();
@@ -22,16 +17,24 @@ module.directive('chosen',function(){
     }
 })
 
-
-function RecipientsController($scope,$http) {
+module.controller('RecipientsController', function($scope, $http) {
     $scope.url = 'recipients.json';
+    $scope.recipients = [];
+    $scope.selectedRecipients = [2,4,6,8]; // DUMMY DATA
     $scope.recipientsList = [];
+
+    var selectRecipients = function() {
+        $scope.recipients = _.filter($scope.recipientsList, function(item) {
+            return _.contains($scope.selectedRecipients, item.id);
+        });
+    }
 
     $scope.fetchRecipients = function() {
         $http.get($scope.url).then(function(result){
             $scope.recipientsList = result.data;
+            selectRecipients();
         });
     }
 
     $scope.fetchRecipients();
-}
+});
