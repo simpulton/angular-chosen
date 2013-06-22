@@ -2,7 +2,7 @@ var module = angular.module('myApp', []);
 
 module.directive('chosen',function(){
     var linker = function(scope,element,attrs) {
-        var list = attrs['list'];
+        var list = attrs['chosen'];
 
         scope.$watch(list, function(){
             element.trigger('liszt:updated');
