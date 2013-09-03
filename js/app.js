@@ -6,6 +6,7 @@ module.directive('chosen',function(){
 
         scope.$watch(list, function(){
             element.trigger('liszt:updated');
+            element.trigger("chosen:updated");
         });
 
         element.chosen();
