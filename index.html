@@ -2,22 +2,21 @@
 <html ng-app="Chosen">
 
   <head>
-    <link data-require="bootstrap-css@3.2.0" data-semver="3.2.0" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <link data-require="chosen@1.0.0" data-semver="1.0.0" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/chosen/1.0/chosen.min.css" />
     <script data-require="chosen@1.0.0" data-semver="1.0.0" src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.0/chosen.jquery.min.js"></script>
     <script data-require="chosen@1.0.0" data-semver="1.0.0" src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.0/chosen.proto.min.js"></script>
     <script data-require="angular.js@1.3.0-beta.19" data-semver="1.3.0-beta.19" src="https://code.angularjs.org/1.3.0-beta.19/angular.js"></script>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style/style.css" />
     <script src="js/app.js"></script>
   </head>
 
   <body ng-controller="MainCtrl as main">
-    <div class="col-xs-7 form-group">
+    <div>
       <select data-placeholder="Select States" class="form-control" chosen="main.allStates" ng-model="main.states" multiple="" ng-options="state.name + ' (' + state.abbreviation + ')' for state in main.allStates"></select>  
+      <button ng-click="main.clearSelect()" type="button" class="btn btn-primary">Clear Select</button>
       <div ng-repeat="state in main.states">- {{state.name}}, {{state.abbreviation}} </div>
     </div>
-    <button ng-click="main.clearSelect()" type="button" class="btn btn-primary">Clear Select</button>
   </body>
   
 </html>
